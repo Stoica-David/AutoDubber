@@ -1,0 +1,33 @@
+# --- Python Virtual Environment ---
+.venv/
+venv/
+ENV/
+env/
+
+# --- Project Cache & Compiled Bytecode ---
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+
+# --- Video & Audio Pipeline Output ---
+# This ignores all files inside the videos/ folder to prevent heavy media uploads,
+# but uses the '!' rule to preserve the empty directory structure for git trackability.
+videos/**/*
+!videos/**/.gitkeep
+
+# --- Logging ---
+# Captures your dynamic local pipeline logs
+*.log
+
+# --- Machine Learning Models Cache ---
+# Prevents downloaded Whisper models from bloating your repository
+.cache/
+.cache/whisper/
+
+# --- OS/IDE Specific ---
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
