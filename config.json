@@ -1,0 +1,12 @@
+{
+  "videos": [
+    {
+      "base_name": "HusqvarnaLawnMower",
+      "yt_video_link": "https://youtu.be/nSJhsF5KnUk?si=gFTYwuuqbrbpvEUw",
+      "input_language": "en",
+      "output_language": "ro",
+      "whisper_model": "base",
+      "clean_temporary_files": true
+    }
+  ]
+}
