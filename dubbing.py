@@ -134,15 +134,21 @@ def process_single_video(video_config: dict) -> str:
     model_size = video_config.get("whisper_model", "base")
     clean_up = video_config.get("clean_temporary_files", True)
 
-    logger.info(f"====== PROCESSING: {base_name.upper()} ======")
-
     src_dir = os.path.join("videos", src_lang)
     tgt_dir = os.path.join("videos", tgt_lang)
     
     os.makedirs(src_dir, exist_ok=True)
     os.makedirs(tgt_dir, exist_ok=True)
-    
+
     final_output_path = os.path.join(tgt_dir, f"{base_name}.mp4")
+    
+    if os.path.exists(final_output_path):
+        logger.warning(f"====== SKIPPING: {base_name.upper()} ======")
+        logger.warning(f"A file named '{base_name}.mp4' already exists in '{tgt_dir}'.")
+        logger.warning(f"If this is a different video, please update the 'base_name' in your config file.")
+        return ""
+
+    logger.info(f"====== PROCESSING: {base_name.upper()} ======")
 
     # Init temp files
     temp_dir = tempfile.gettempdir()
@@ -183,7 +189,6 @@ def process_single_video(video_config: dict) -> str:
                     os.remove(f)
 
     return final_output_path
-
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="AutoDubber Processing Pipeline")
